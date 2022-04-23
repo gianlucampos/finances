@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:finances/core/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -23,40 +25,53 @@ class DrawerWidget extends StatelessWidget {
           //     ),
           //   ),
           // ),
-          ListTile(
-            leading: Icon(Icons.house),
-            title: Text('Resumo'),
-            iconColor: AppColors.grey,
-            textColor: AppColors.grey,
-            hoverColor: AppColors.greyHover,
-            onTap: () => print('Resumo'),
+          _ButtonTileWidget(
+            icon: Icons.house,
+            title: 'Resumo',
+            onTap: () => log('Resumo'),
           ),
-          ListTile(
-            leading: Icon(Icons.money),
-            title: Text('Ativos'),
-            iconColor: AppColors.grey,
-            textColor: AppColors.grey,
-            hoverColor: AppColors.greyHover,
-            onTap: () => print('Resumo'),
+          _ButtonTileWidget(
+            icon: Icons.money,
+            title: 'Ativos',
+            onTap: () => log('Ativos'),
           ),
-          ListTile(
-            leading: Icon(Icons.attach_money),
-            title: Text('Rendimentos'),
-            iconColor: AppColors.grey,
-            textColor: AppColors.grey,
-            hoverColor: AppColors.greyHover,
-            onTap: () => print('Resumo'),
+          _ButtonTileWidget(
+            icon: Icons.attach_money,
+            title: 'Rendimentos',
+            onTap: () => log('Rendimentos'),
           ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
-            iconColor: AppColors.grey,
-            textColor: AppColors.grey,
-            hoverColor: AppColors.greyHover,
-            onTap: () => print('Resumo'),
+          _ButtonTileWidget(
+            icon: Icons.settings,
+            title: 'Settings',
+            onTap: () => log('Settings'),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ButtonTileWidget extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+
+  const _ButtonTileWidget({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(title),
+      iconColor: AppColors.grey,
+      textColor: AppColors.grey,
+      hoverColor: AppColors.greyHover,
+      onTap: onTap,
     );
   }
 }
