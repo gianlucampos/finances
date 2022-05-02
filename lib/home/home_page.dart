@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:developer';
 
-import 'package:finances/core/app_colors.dart';
+import 'package:finances/core/core.dart';
 import 'package:finances/home/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 

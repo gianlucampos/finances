@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:finances/core/app_colors.dart';
+import 'package:finances/rendimentos/rendimentos_page.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: AppColors.grey2,
+      backgroundColor: AppColors.black,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -38,7 +39,8 @@ class DrawerWidget extends StatelessWidget {
           _ButtonTileWidget(
             icon: Icons.attach_money,
             title: 'Rendimentos',
-            onTap: () => log('Rendimentos'),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const RendimentosPage())),
           ),
           _ButtonTileWidget(
             icon: Icons.settings,
