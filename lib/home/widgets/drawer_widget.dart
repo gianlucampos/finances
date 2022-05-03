@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:finances/core/app_colors.dart';
+import 'package:finances/core/app_text_styles.dart';
 import 'package:finances/rendimentos/rendimentos_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,35 +15,31 @@ class DrawerWidget extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          // DrawerHeader(
-          //   decoration: BoxDecoration(
-          //     color: AppColors.grey2,
-          //   ),
-          //   child: Text(
-          //     'Finances',
-          //     style: TextStyle(
-          //       color: Colors.white,
-          //       fontSize: 24,
-          //     ),
-          //   ),
-          // ),
-          _ButtonTileWidget(
+          Container(
+            height: 50,
+            width: 50,
+            // color: AppColors.grey,
+            child: Center(child: Text('Finances', style: AppTextStyles.title)),
+          ),
+          _DrawerButtonWidget(
             icon: Icons.house,
             title: 'Resumo',
             onTap: () => log('Resumo'),
           ),
-          _ButtonTileWidget(
+          _DrawerButtonWidget(
             icon: Icons.money,
             title: 'Ativos',
             onTap: () => log('Ativos'),
           ),
-          _ButtonTileWidget(
+          _DrawerButtonWidget(
             icon: Icons.attach_money,
             title: 'Rendimentos',
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const RendimentosPage())),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const RendimentosPage())),
           ),
-          _ButtonTileWidget(
+          _DrawerButtonWidget(
             icon: Icons.settings,
             title: 'Settings',
             onTap: () => log('Settings'),
@@ -53,12 +50,12 @@ class DrawerWidget extends StatelessWidget {
   }
 }
 
-class _ButtonTileWidget extends StatelessWidget {
+class _DrawerButtonWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final VoidCallback onTap;
 
-  const _ButtonTileWidget({
+  const _DrawerButtonWidget({
     Key? key,
     required this.icon,
     required this.title,
