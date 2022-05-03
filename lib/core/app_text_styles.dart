@@ -27,10 +27,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle heading15 = TextStyle(
-    color: AppColors.black,
-    fontSize: 15,
-    fontWeight: FontWeight.w600,
+  static const TextStyle headingBold = TextStyle(
+    color: AppColors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
   );
 
   static const TextStyle body = TextStyle(

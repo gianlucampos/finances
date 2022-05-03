@@ -1,7 +1,14 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:finances/core/core.dart';
+import 'package:finances/models/rendimento.dart';
 import 'package:flutter/material.dart';
+
+List<RendimentoModel> listRendimentos = [
+  RendimentoModel(periodo: '01/01/2022', valor: 58.00, nome: 'IRDM11'),
+  RendimentoModel(periodo: '01/01/2022', valor: 12.00, nome: 'HGLG11'),
+  RendimentoModel(periodo: '01/01/2022', valor: 5.00, nome: 'XPLG11'),
+  RendimentoModel(periodo: '01/01/2022', valor: 34.00, nome: 'MXRF11'),
+  RendimentoModel(periodo: '01/01/2022', valor: 25.00, nome: 'FIIB11'),
+];
 
 class RendimentosPage extends StatelessWidget {
   const RendimentosPage({Key? key}) : super(key: key);
@@ -10,42 +17,33 @@ class RendimentosPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.black,
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 250, vertical: 15),
+          child: Container(
+            decoration: BoxDecoration(
+                color: AppColors.black,
+                borderRadius: BorderRadius.circular(15)),
             child: Column(
-              // ignore: prefer_const_literals_to_create_immutables
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text.rich(
-                  TextSpan(text: "Rendimentos", style: AppTextStyles.heading40),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 95, vertical: 25),
+                  child: Text("Rendimentos", style: AppTextStyles.heading40),
                 ),
-                SizedBox(height: 20),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  // ignore: prefer_const_literals_to_create_immutables
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text.rich(TextSpan(
-                        text: "Período", style: AppTextStyles.heading)),
-                    Text.rich(
-                        TextSpan(text: "Valor", style: AppTextStyles.heading)),
-                    Text.rich(
-                        TextSpan(text: "Nome", style: AppTextStyles.heading)),
-                    SizedBox(width: 20)
+                    Text("Período", style: AppTextStyles.headingBold),
+                    Text("Valor", style: AppTextStyles.headingBold),
+                    Text("Nome", style: AppTextStyles.headingBold),
                   ],
                 ),
-                Divider(),
+                _CustomDivider(),
                 Column(
-                  children: List.generate(10, (index) {
-                    return LineWidget(index: index);
-                  }),
-                ),
+                  children: listRendimentos
+                      .map((i) => new _TableBody(rendimento: i))
+                      .toList(),
+                )
               ],
             ),
           ),
@@ -55,25 +53,49 @@ class RendimentosPage extends StatelessWidget {
   }
 }
 
-class LineWidget extends StatelessWidget {
-  final int index;
+class _TableBody extends StatelessWidget {
+  final RendimentoModel rendimento;
 
-  const LineWidget({
+  _TableBody({
     Key? key,
-    required this.index,
+    required this.rendimento,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      // ignore: prefer_const_literals_to_create_immutables
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text.rich(TextSpan(text: "$index", style: AppTextStyles.heading)),
-        Text.rich(TextSpan(text: "$index", style: AppTextStyles.heading)),
-        Text.rich(TextSpan(text: "$index", style: AppTextStyles.heading)),
-        SizedBox(width: 20)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(rendimento.periodo, style: AppTextStyles.heading),
+            Text("R\$ ${rendimento.valor.toStringAsFixed(2)}",
+                style: AppTextStyles.heading),
+            Text(rendimento.nome, style: AppTextStyles.heading),
+          ],
+        ),
+        _CustomDivider(),
       ],
+    );
+  }
+}
+
+class _CustomDivider extends StatelessWidget {
+  const _CustomDivider({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 25.0, bottom: 20.0),
+      child: Divider(
+        height: 1,
+        thickness: 1,
+        color: AppColors.greyHover,
+      ),
     );
   }
 }
