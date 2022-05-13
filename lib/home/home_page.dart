@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:finances/core/core.dart';
 import 'package:finances/home/widgets/drawer_widget.dart';
-import 'package:finances/home/widgets/sidebar_widget.dart';
+import 'package:finances/shared/widgets/sidebar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

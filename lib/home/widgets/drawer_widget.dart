@@ -69,7 +69,7 @@ class _DrawerButtonWidget extends StatelessWidget {
       title: Text(title),
       iconColor: AppColors.grey,
       textColor: AppColors.grey,
-      hoverColor: AppColors.greyHover,
+      hoverColor: AppColors.greySelected,
       onTap: onTap,
     );
   }

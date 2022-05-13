@@ -1,5 +1,6 @@
 import 'package:finances/core/core.dart';
-import 'package:finances/models/rendimento.dart';
+import 'package:finances/shared/models/rendimento.dart';
+import 'package:finances/shared/widgets/sidebar_widget.dart';
 import 'package:flutter/material.dart';
 
 List<RendimentoModel> listRendimentos = [
@@ -16,36 +17,50 @@ class RendimentosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 250, vertical: 15),
-          child: Container(
-            decoration: BoxDecoration(
-                color: AppColors.black,
-                borderRadius: BorderRadius.circular(15)),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 95, vertical: 25),
-                  child: Text("Rendimentos", style: AppTextStyles.heading40),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text("Período", style: AppTextStyles.headingBold),
-                    Text("Valor", style: AppTextStyles.headingBold),
-                    Text("Nome", style: AppTextStyles.headingBold),
-                  ],
-                ),
-                _CustomDivider(),
-                Column(
-                  children: listRendimentos
-                      .map((i) => new _TableBody(rendimento: i))
-                      .toList(),
-                )
-              ],
-            ),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        body: Row(
+          children: [
+            SideBarWidget(),
+            Expanded(child: _Table()),
+          ],
+        ));
+  }
+}
+
+class _Table extends StatelessWidget {
+  const _Table({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 250, vertical: 15),
+        child: Container(
+          decoration: BoxDecoration(
+              color: AppColors.black, borderRadius: BorderRadius.circular(15)),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 95, vertical: 25),
+                child: Text("Rendimentos", style: AppTextStyles.heading40),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text("Período", style: AppTextStyles.headingBold),
+                  Text("Valor", style: AppTextStyles.headingBold),
+                  Text("Nome", style: AppTextStyles.headingBold),
+                ],
+              ),
+              _CustomDivider(),
+              Column(
+                children: listRendimentos
+                    .map((i) => new _TableBody(rendimento: i))
+                    .toList(),
+              )
+            ],
           ),
         ),
       ),
@@ -94,7 +109,7 @@ class _CustomDivider extends StatelessWidget {
       child: Divider(
         height: 1,
         thickness: 1,
-        color: AppColors.greyHover,
+        color: AppColors.greySelected,
       ),
     );
   }
